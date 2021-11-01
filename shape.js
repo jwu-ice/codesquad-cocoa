@@ -1,4 +1,4 @@
-// 전역
+// 전역변수 기록용
 let log = [];
 
 getArea("circle", 2);
@@ -17,6 +17,7 @@ function getArea(...value) {
     // 원의 길이가 n씩 증가할 때 모든 원 넓이의 합
     if (value[2]) {
       for (let i = value[1]; i <= value[2]; i++) {
+        debugger;
         result += i * i;
       }
       return setLog(value[0], result);
