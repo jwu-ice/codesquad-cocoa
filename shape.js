@@ -7,7 +7,6 @@ getArea("rect", 2, 3);
 getArea("trapezoid", 10, 15, 12);
 printExecutionSequence();
 
-// shape.js
 // 도형넓이 구하기
 function getArea(...value) {
   let result = 0;
@@ -17,23 +16,26 @@ function getArea(...value) {
     // 원의 길이가 n씩 증가할 때 모든 원 넓이의 합
     if (value[2]) {
       for (let i = value[1]; i <= value[2]; i++) {
-        debugger;
-        result += i * i;
+        result += i * i * 3.14;
       }
       return setLog(value[0], result);
     }
-    result = value[1] * value[1];
+    result = value[1] * value[1] * 3.14;
     return setLog(value[0], result);
+
     // 사각형 넓이
   } else if (value[0] === "rect") {
     result = value[1] * value[2];
     return setLog(value[0], result);
+
     // 사다리꼴
   } else if (value[0] === "trapezoid") {
     result = ((value[1] + value[2]) * value[3]) / 2;
     return setLog(value[0], result);
+
+    // 이외
   } else {
-    console.log(`circe, rect, trapezoid 중 하나를 고르세요`);
+    return console.log(`circle, rect, trapezoid 중 하나를 고르세요`);
   }
 }
 
