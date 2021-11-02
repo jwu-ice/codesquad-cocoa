@@ -5,40 +5,40 @@ getArea("circle", 2);
 getArea("circle", 2, 5);
 getArea("rect", 2, 3);
 getArea("trapezoid", 10, 15, 12);
+getArea("AAA", 100);
 printExecutionSequence();
 
 // 도형넓이 구하기
-function getArea(...value) {
-  let result = 0;
-
-  // 원 넓이
-  if (value[0] === "circle") {
-    // 원의 길이가 n씩 증가할 때 모든 원 넓이의 합
-    if (value[2]) {
-      for (let i = value[1]; i <= value[2]; i++) {
-        result += i * i * 3.14;
-      }
-      return setLog(value[0], result);
-    }
-    result = value[1] * value[1] * 3.14;
-    return setLog(value[0], result);
-
-    // 사각형 넓이
-  } else if (value[0] === "rect") {
-    result = value[1] * value[2];
-    return setLog(value[0], result);
-
-    // 사다리꼴
-  } else if (value[0] === "trapezoid") {
-    result = ((value[1] + value[2]) * value[3]) / 2;
-    return setLog(value[0], result);
-
-    // 이외
+function getArea(shape, ...value) {
+  if (shape === "circle") {
+    return setLog(shape, getCircle(...value));
+  } else if (shape === "rect") {
+    return setLog(shape, getRect(...value));
+  } else if (shape === "trapezoid") {
+    return setLog(shape, getTrapezoid(...value));
   } else {
-    return console.log(`circle, rect, trapezoid 중 하나를 고르세요`);
+    return console.log(`circle, rect, trapezoid 중 하나와 길이를 적으세요`);
   }
 }
-
+// 원
+function getCircle(radius, n) {
+  if (n) {
+    let result = 0;
+    for (let i = radius; i <= n; i++) {
+      result += i * i * 3.14;
+    }
+    return result;
+  }
+  return radius * radius * 3.14;
+}
+// 사각형
+function getRect(width, height) {
+  return width * height;
+}
+// 사다리꼴
+function getTrapezoid(upper_side, lower_side, height) {
+  return ((upper_side + lower_side) * height) / 2;
+}
 // 출력, log 기록
 function setLog(shape, result) {
   console.log(result);
