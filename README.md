@@ -5,5 +5,4 @@
 2. 리팩토링하며 천천히 훑어본다.
 3. 블로그에 정리하며 기억한다!!
 
-code-squad cocoa course
-Day1_1101정리: https://www.notion.so/jwuu/11-01-f279068ecf324b608c01a991897ea866
+Day1_1101 정리: https://www.notion.so/jwuu/11-01-f279068ecf324b608c01a991897ea866
