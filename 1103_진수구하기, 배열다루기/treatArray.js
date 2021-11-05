@@ -4,31 +4,19 @@
     임의의 숫자(m)를 입력받아 1부터 m까지의 factorial 값을
     배열로 담아서 반환하는 함수 만들기.
 */
-// for문 안의 for문
-function calculate(m) {
-  let result = [1];
-  for (let i = 2; i <= m; i++) {
-    let factorial = 1;
-    for (let j = i; j > 1; j--) {
-      factorial *= j;
-    }
-    result = [...result, factorial];
-  }
-  console.log(result);
-}
-// calculate(4);
 
 // 이전 값 곱하기
 // 1  2  6  24  120
 // 2배 3배 4배 5배
-function calculate_2(m) {
+
+function calculate(m) {
   let result = [1];
   for (let i = 2; i <= m; i++) {
     result = [...result, i * result[i - 2]];
   }
   console.log(result);
 }
-// calculate_2(6);
+// calculate(2);
 
 /*
     2. 배열 거르기
@@ -48,14 +36,17 @@ const peoples = ["crong!@#", "honux5", "sarah#", "hea3d", "zello", "5lucas"];
 
 function filterId(peoples) {
   const goodPeoples = [];
+
   for (let i = 0; i < peoples.length; i++) {
     // 특수기호가 있는 아이디 제외
-    const badPeoples = /[!@#%&^&*()+_{}]/g.test(peoples[i]);
+    const badPeoples = /[!@#%&^&]/g.test(peoples[i]);
     if (!badPeoples) {
       goodPeoples.push(peoples[i]);
     }
   }
-  console.log(goodPeoples.map((value) => value.replace(/[0-9]/g, "")));
+  console.log(
+    (result = goodPeoples.map((value) => value.replace(/[0-9]/g, "")))
+  );
 }
 filterId(peoples);
 
@@ -77,16 +68,21 @@ const grades = [
 function getAverage(grades) {
   let averagePoint = [];
   let maxAveragePoint = [];
+
+  // 평균점수 구하기
   grades.forEach(
     (value, index) =>
-      (averagePoint[index] =
-        value.reduce((previous, current) => previous + current, 0) /
-        value.length)
+      (averagePoint[index] = value
+        .reduce((previous, current) => previous + current / value.length, 0)
+        .toFixed(2))
   );
+
+  // 최고값 먼저 구하고
   grades.forEach(
     (value, index) => (maxAveragePoint[index] = Math.max(...value))
   );
 
+  // 최고값의 평균점수 구하기
   maxAveragePoint = maxAveragePoint.reduce(
     (previous, current, index, arr) => previous + current / arr.length,
     0
@@ -95,7 +91,7 @@ function getAverage(grades) {
   console.log("각 학생의 평균점수: ", averagePoint);
   console.log("모든 학생의 최고점수의 평균점수: ", maxAveragePoint);
 }
-getAverage(grades);
+// getAverage(grades);
 
 /*
     4. 배열 만들기
