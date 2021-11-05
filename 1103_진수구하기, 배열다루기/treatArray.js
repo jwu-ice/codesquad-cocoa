@@ -16,7 +16,7 @@ function calculate(m) {
   }
   console.log(result);
 }
-// calculate(2);
+//  calculate(2);
 
 /*
     2. 배열 거르기
@@ -48,7 +48,7 @@ function filterId(peoples) {
     (result = goodPeoples.map((value) => value.replace(/[0-9]/g, "")))
   );
 }
-filterId(peoples);
+// filterId(peoples);
 
 /*
     3. 평균 구하기
@@ -130,13 +130,16 @@ const data = {
   },
 };
 
+// result는 지역변수로 논다.
 function onlyNumberValue(result, arg) {
   const keys = Object.keys(arg);
   const values = Object.values(arg);
   values.forEach((value, i) => {
-    if (typeof value === "object") onlyNumberValue(result, value);
-    else if (typeof value === "number") result.push(keys[i]);
+    if (typeof value === "number") result = [...result, keys[i]];
+    else if (typeof value === "object")
+      result = [...result, ...onlyNumberValue([], value)];
   });
+
   return result;
 }
 // console.log(onlyNumberValue([], data));
@@ -247,11 +250,11 @@ const list = [
 
 function findNameInSK(result, arg) {
   let values = Object.values(arg);
+
   values.forEach((value) => {
     if (value.type === "sk") result = [...result, value.name];
     if (value.childnode.length) {
-      // findNameInSK(result, value.childnode);
-      // result = [...result, ...findNameInSK([], value.childnode)];
+      result = [...result, ...findNameInSK([], value.childnode)];
     }
   });
 
@@ -279,9 +282,12 @@ const myReduce = (arr, callback, initialValue) => {
     return initialValue;
   }
 };
+
+// reduce 더하기
 const result_plus = myReduce([1, 2, 3, 4, 5], (next, prev) => next + prev);
 // console.log(result_plus);
 
+// reduce object 개수 찾기
 const result_object = myReduce(
   [1, 2, 1, 2, 1, 3, 4, 1, 4, 5, 5, 4, 4],
   (next, prev) => {
