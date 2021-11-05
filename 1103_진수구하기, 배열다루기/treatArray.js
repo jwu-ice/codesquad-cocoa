@@ -134,6 +134,7 @@ const data = {
 function onlyNumberValue(result, arg) {
   const keys = Object.keys(arg);
   const values = Object.values(arg);
+
   values.forEach((value, i) => {
     if (typeof value === "number") result = [...result, keys[i]];
     else if (typeof value === "object")
@@ -142,7 +143,7 @@ function onlyNumberValue(result, arg) {
 
   return result;
 }
-// console.log(onlyNumberValue([], data));
+console.log(onlyNumberValue([], data));
 
 /*
   5. 배열 결과 출력
@@ -260,7 +261,7 @@ function findNameInSK(result, arg) {
 
   return result;
 }
-// console.log(findNameInSK([], list));
+console.log(findNameInSK([], list));
 
 /*
   6. reduce 만들기.
@@ -284,12 +285,12 @@ const myReduce = (arr, callback, initialValue) => {
 };
 
 // reduce 더하기
-const result_plus = myReduce([1, 2, 3, 4, 5], (next, prev) => next + prev);
+const result_plus = myReduce([1, 2, 3, 4, 5], (next, prev) => next + prev, 0);
 // console.log(result_plus);
 
 // reduce object 개수 찾기
 const result_object = myReduce(
-  [1, 2, 1, 2, 1, 3, 4, 1, 4, 5, 5, 4, 4],
+  ["apple", "apple", "banana"],
   (next, prev) => {
     if (next in prev) {
       prev[next]++;
@@ -300,4 +301,4 @@ const result_object = myReduce(
   },
   {}
 );
-// console.log(result_object);
+console.log(result_object);
