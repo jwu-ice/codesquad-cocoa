@@ -50,14 +50,14 @@ function filterId(peoples) {
   const goodPeoples = [];
   for (let i = 0; i < peoples.length; i++) {
     // 특수기호가 있는 아이디 제외
-    const badPeoples = /[!@#%&]/g.test(peoples[i]);
+    const badPeoples = /[!@#%&^&*()+_{}]/g.test(peoples[i]);
     if (!badPeoples) {
       goodPeoples.push(peoples[i]);
     }
   }
   console.log(goodPeoples.map((value) => value.replace(/[0-9]/g, "")));
 }
-// filterId(peoples);
+filterId(peoples);
 
 /*
     3. 평균 구하기
@@ -87,16 +87,15 @@ function getAverage(grades) {
     (value, index) => (maxAveragePoint[index] = Math.max(...value))
   );
 
-  console.log("각 학생의 평균점수: ", averagePoint);
-  console.log(
-    "모든 학생의 최고점수의 평균점수: ",
-    maxAveragePoint.reduce(
-      (previous, current, index, arr) => previous + current / arr.length,
-      0
-    )
+  maxAveragePoint = maxAveragePoint.reduce(
+    (previous, current, index, arr) => previous + current / arr.length,
+    0
   );
+
+  console.log("각 학생의 평균점수: ", averagePoint);
+  console.log("모든 학생의 최고점수의 평균점수: ", maxAveragePoint);
 }
-// getAverage(grades);
+getAverage(grades);
 
 /*
     4. 배열 만들기
@@ -252,12 +251,51 @@ const list = [
 
 function findNameInSK(result, arg) {
   let values = Object.values(arg);
-  values.forEach((value, i) => {
-    if (value.type === "sk") result.push(value.name);
-
-    findNameInSK(result, value.childnode);
+  values.forEach((value) => {
+    if (value.type === "sk") result = [...result, value.name];
+    if (value.childnode.length) {
+      // findNameInSK(result, value.childnode);
+      // result = [...result, ...findNameInSK([], value.childnode)];
+    }
   });
 
   return result;
 }
 // console.log(findNameInSK([], list));
+
+/*
+  6. reduce 만들기.
+  Array 의 reduce 메서드처럼 동작하는 myReduce 메서드를 만들자.
+*/
+
+const myReduce = (arr, callback, initialValue) => {
+  // 초기값 없을 때
+  if (initialValue === undefined) {
+    initialValue = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+      initialValue = callback(arr[i], initialValue);
+    }
+    return initialValue;
+
+    // 초기값 있을 때
+  } else {
+    arr.forEach((value) => (initialValue = callback(value, initialValue)));
+    return initialValue;
+  }
+};
+const result_plus = myReduce([1, 2, 3, 4, 5], (next, prev) => next + prev);
+// console.log(result_plus);
+
+const result_object = myReduce(
+  [1, 2, 1, 2, 1, 3, 4, 1, 4, 5, 5, 4, 4],
+  (next, prev) => {
+    if (next in prev) {
+      prev[next]++;
+    } else {
+      prev[next] = 1;
+    }
+    return prev;
+  },
+  {}
+);
+// console.log(result_object);
