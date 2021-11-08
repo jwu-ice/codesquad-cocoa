@@ -9,10 +9,19 @@
     첫째 줄부터 N번째 줄까지 차례대로 별을 출력한다.    
 
 */
+var fs = require("fs");
+var input = fs
+  .readFileSync("dev/stdin")
+  .toString()
+  .trim()
+  .split("")
+  .map((a) => a);
 
-const input = 5;
+const countingStar = (input) => {
+  const star = Array(input).fill("*").join("");
+  for (let i = 0; i < star.length; i++) {
+    console.log(star.slice(0, i + 1));
+  }
+};
 
-function stampStar(count) {
-  console.log();
-  return stampStar(count);
-}
+countingStar(Number(input));
