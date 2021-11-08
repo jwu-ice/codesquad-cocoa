@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\1103_진수구하기, 배열다루기\\treatArray.js"
+            "program": "${workspaceFolder}\\1108_HashMap\\makeHashMap.js"
         }
     ]
 }
