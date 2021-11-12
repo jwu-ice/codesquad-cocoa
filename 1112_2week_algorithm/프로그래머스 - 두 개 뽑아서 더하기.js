@@ -1,3 +1,8 @@
+/*
+    Set을 알고 있었지만 처음 활용. 
+    중복안되는건 장점이지만 값을 넣을 때 add로 한개씩 밖에 못 집어넣는걸까?
+*/
+
 function solution(numbers) {
   let resultSet = new Set();
   recursive(numbers);
