@@ -28,11 +28,13 @@ function solution(board, moves) {
   moves.forEach((choiceIndex) => {
     let curBoard = newBoard[choiceIndex - 1];
     let _findIndex = curBoard.findIndex((value) => value > 0);
-    if (!curBoard[_findIndex]) return;
+
+    if (!curBoard[_findIndex]) {
+      return;
+    }
 
     basket = [...basket, curBoard[_findIndex]];
     curBoard[_findIndex] = 0;
-
     if (basket[basket.length - 1] === basket[basket.length - 2]) {
       basket.splice(basket.length - 2, 2);
       lostCount += 2;

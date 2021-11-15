@@ -18,7 +18,7 @@ function solution(jinsoo, count, man, gildong) {
     result += i.toString(jinsoo);
   }
 
-  console.log(jinsoo + "진수 모두 출력 :>> ", result.split(""));
+  console.log(jinsoo + "진수 모두 출력 :>> ", result);
   console.log("길동이 차례 숫자 :>> ", gildong_turn);
 }
 

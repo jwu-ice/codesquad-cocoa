@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\1108_HashMap\\makeHashMap.js"
+            "program": "${workspaceFolder}\\1115_Async_GradeManageProgram\\AsyncExample.js"
         }
     ]
 }
