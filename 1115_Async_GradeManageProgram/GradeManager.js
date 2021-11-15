@@ -30,18 +30,20 @@ function findPercent_70to80(average, standard) {
 
   let Z_70 = +((70 - average) / standard).toFixed(2);
   let Z_80 = +((80 - average) / standard).toFixed(2);
+
+  // 표준정규분포표를 참고해서 구현
+  // 1.03 -> 0.8485 / 0.28 -> 0.6103
+  // expect: 0.4588
   if (Z_70 === -1.03) Z_70 = 1 - 0.8485;
   if (Z_80 === 0.28) Z_80 = 0.6103;
-  return Z_80 - Z_70;
+  return (result = ((Z_80 - Z_70) * 100).toFixed(2));
 }
 
-console.log(getMean(mathScore));
-console.log(getStandardDeviation(mathScore));
+console.log(`평균:`, getMean(mathScore));
+console.log(`표준편차:`, getStandardDeviation(mathScore));
 console.log(
-  findPercent_70to80(getMean(mathScore), getStandardDeviation(mathScore))
+  `70-80점 사이의 값을 갖는 비율은 얼마인가? ${findPercent_70to80(
+    getMean(mathScore),
+    getStandardDeviation(mathScore)
+  )}%를 가진다.`
 );
-
-// -1.03 < z <  0.28
-// 1 - 0.8485       0.6103
-// 0.1515       0.6103
-// 0.4588
