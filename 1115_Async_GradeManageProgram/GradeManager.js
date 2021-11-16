@@ -26,7 +26,7 @@ function getStandardDeviation(grade) {
 function findPercent_70to80(average, standard) {
   // (평균, 표준편차^2) (77.8665, 7.6719.. ^2)
   // 70 ~ 80을 구하라
-  // 공식 표준값 Z = (x - 평균) / 표준편차
+  // 표준값 Z = ( X - 평균 ) / 표준편차
 
   let Z_70 = +((70 - average) / standard).toFixed(2);
   let Z_80 = +((80 - average) / standard).toFixed(2);
