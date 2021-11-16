@@ -36,8 +36,8 @@ class CalculateManager {
     let check = "양수";
     if (z < 0) check = "음수";
     const str_z = Math.abs(z) + "";
-    let row = str_z.slice(0, 3).replace(".", ""); // 가로
-    let col = str_z.slice(3); // 세로
+    let row = str_z.slice(0, 3).replace(".", "");
+    let col = str_z.slice(3);
 
     if (row[0] == 0) row = row.slice(1); // 앞자리가 0일 때 지워준다.
 
