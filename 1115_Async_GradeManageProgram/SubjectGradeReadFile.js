@@ -21,10 +21,11 @@ const getSubject = (text) => {
   console.log("quickSort:", quickSort(subjects));
 };
 
-// 객체로 풀다 실패........................
+// 객체로 풀다 성공은 했다. 하지마 문제를 잘못 이해했음.
 // 객체는 쓰레기다 Map을 쓰자
 
 const quickSort = (originObj) => {
+  console.log("originObj :>> ", originObj);
   if (Object.keys(originObj).length <= 1) return originObj;
 
   const pivot = originObj[Object.keys(originObj)[0]];
