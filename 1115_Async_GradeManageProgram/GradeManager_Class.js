@@ -1,12 +1,68 @@
 /*
   - 클래스 형태로 구현
-  - 표준정규분포 table string in copy
+  - 표준정규분포표 복사하고 입맛에 맞게 가공
 */
+// 표준값 Z = ( X - 평균 ) / 표준편차
+// 표준정규분포표를 참고해서 구현
+// -1.03 -> 0.1515 / 0.28 -> 0.6103
+// expect => 0.4588
 
-const mathScore = [
-  89.23, 82.03, 71.56, 78.82, 85.05, 84.44, 67.53, 71.7, 77.97, 73.77, 84.25,
-  67.01, 73.78, 64.19, 89.89, 90.32, 73.21, 75.35, 83.22, 74.01,
-];
+class CalculateManager {
+  constructor(grade) {
+    this.grade = grade;
+
+    this.getMean = function () {
+      return this.grade.reduce((pre, cur) => pre + cur) / this.grade.length;
+    };
+
+    this.getStandardDeviation = function () {
+      return Math.sqrt(
+        this.grade.reduce(
+          (pre, cur) => pre + Math.pow(cur - this.getMean(), 2),
+          0
+        ) / this.grade.length
+      ).toFixed(4);
+    };
+  }
+
+  // 복붙한 표준정규분포표 2차원배열로 가공
+  getZ_table(copy_z_value) {
+    const Z_table = copy_z_value.split("\n").map((v, i) => v.split("\t"));
+    return Z_table;
+  }
+
+  // 표를 보고 확률값 구하기
+  getPercent(z) {
+    let check = "양수";
+    if (z < 0) check = "음수";
+    const str_z = Math.abs(z) + "";
+    let row = str_z.slice(0, 3).replace(".", ""); // 가로
+    let col = str_z.slice(3); // 세로
+
+    if (row[0] == 0) row = row.slice(1); // 앞자리가 0일 때 지워준다.
+
+    let result = this.getZ_table(table)[row][col];
+    if (check === "음수") result = 1 - this.getZ_table(table)[row][col];
+    return result;
+  }
+
+  // 정규분포확률 구하기
+  getNormalDistribution(low, high) {
+    const Z_low = (
+      (low - this.getMean()) /
+      this.getStandardDeviation()
+    ).toFixed(2);
+    const Z_high = (
+      (high - this.getMean()) /
+      this.getStandardDeviation()
+    ).toFixed(2);
+    const result = (
+      (this.getPercent(Z_high) - this.getPercent(Z_low)) *
+      100
+    ).toFixed(2);
+    return result;
+  }
+}
 
 let table = `0.50000	0.50399	0.50798	0.51197	0.51595	0.51994	0.52392	0.52790	0.53188	0.53586
 0.53983	0.54380	0.54776	0.55172	0.55567	0.55962	0.56360	0.56749	0.57142	0.57535
@@ -50,69 +106,16 @@ let table = `0.50000	0.50399	0.50798	0.51197	0.51595	0.51994	0.52392	0.52790	0.5
 0.99995	0.99995	0.99996	0.99996	0.99996	0.99996	0.99996	0.99996	0.99997	0.99997
 0.99997	0.99997	0.99997	0.99997	0.99997	0.99997	0.99998	0.99998	0.99998	0.99998`;
 
-class CalculateManager {
-  constructor(grade) {
-    this.grade = grade;
-    this.average = this.getMean();
-    this.standard = this.getStandardDeviation();
-  }
+const mathScore = [
+  89.23, 82.03, 71.56, 78.82, 85.05, 84.44, 67.53, 71.7, 77.97, 73.77, 84.25,
+  67.01, 73.78, 64.19, 89.89, 90.32, 73.21, 75.35, 83.22, 74.01,
+];
 
-  getMean() {
-    return this.grade.reduce((pre, cur) => pre + cur) / this.grade.length;
-  }
-
-  getStandardDeviation() {
-    return Math.sqrt(
-      this.grade.reduce(
-        (pre, cur) => pre + Math.pow(cur - this.average, 2),
-        0
-      ) / this.grade.length
-    ).toFixed(4);
-  }
-
-  // 복붙한 표준정규분포표 가공
-  getZ_table(copy_z_value) {
-    const Z_table = copy_z_value.split("\n").map((v, i) => v.split("\t"));
-    return Z_table;
-  }
-
-  // 표를 보고 값 구하기
-  getPercent(z) {
-    let check = "양수";
-    if (z < 0) check = "음수";
-
-    const str_z = Math.abs(z) + "";
-    let row = str_z.slice(0, 3).replace(".", ""); // 가로줄 : row
-    let col = str_z.slice(3); // 세로줄 : column
-
-    if (row[0] == 0) row = row.slice(1); // 앞자리가 0일 때 지워준다.
-
-    let result = this.getZ_table(table)[row][col];
-    if (check === "음수") result = 1 - this.getZ_table(table)[row][col];
-    return result;
-  }
-
-  // 정규분포확률 구하기
-  gerNormaldistribution(low, high) {
-    const Z_low = ((low - this.average) / this.standard).toFixed(2);
-    const Z_high = ((high - this.average) / this.standard).toFixed(2);
-    const result = (
-      (this.getPercent(Z_high) - this.getPercent(Z_low)) *
-      100
-    ).toFixed(2);
-    return result;
-  }
-}
-
-// 표준값 Z = ( X - 평균 ) / 표준편차
-// 표준정규분포표를 참고해서 구현
-// -1.03 -> 0.1515 / 0.28 -> 0.6103
-// expect => 0.4588
 const myStudentGrade = new CalculateManager(mathScore);
 console.log(`평균:`, myStudentGrade.getMean());
 console.log(`표준편차:`, myStudentGrade.getStandardDeviation());
 console.log(
-  `70-80점 사이의 값을 갖는 비율은 얼마인가? ${myStudentGrade.gerNormaldistribution(
+  `70-80점 사이의 값을 갖는 비율은 얼마인가? ${myStudentGrade.getNormalDistribution(
     70,
     80
   )}%를 가진다.`
