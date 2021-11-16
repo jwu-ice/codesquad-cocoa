@@ -11,7 +11,6 @@
 ## Git Commit Convention
 ![image](https://user-images.githubusercontent.com/72546335/141967949-21d04419-6578-40ca-9548-08d9ddf045a1.png)
 
-
 ### 😃 Gitmoji List
 
 🎨 코드의 형식 / 구조를 개선
@@ -33,3 +32,7 @@
 💩 개선되어야 할 불량 코드 작성
 
 🎉 프로젝트 시작
+
+
+### git convention 정리
+https://www.notion.so/jwuu/About-Git-Convention-70440e5a9c204d769d83aee2039aae3d
