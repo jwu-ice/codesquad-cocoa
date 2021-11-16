@@ -56,7 +56,7 @@ function getDepthLevel(data) {
 }
 
 // 3. 배열 분석 정보를 출력
-// donny 코딩 클론.
+// dony 코딩 클론.
 // JSON.stringify 했을 때 전부보면 data5의 8, 43, 99가 같은 선상에 있다..
 //
 const dataStructure = {
