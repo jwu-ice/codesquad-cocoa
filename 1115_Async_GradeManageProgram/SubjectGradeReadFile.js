@@ -17,30 +17,31 @@ fs.readFile(
 const getSubject = (text) => {
   const subjects = JSON.parse(text);
   console.log("과목별 점수:", subjects);
+
   console.log("quickSort:", quickSort(subjects));
 };
 
 // 객체로 풀다 실패........................
 // 객체는 쓰레기다 Map을 쓰자
 
-const quickSort = function (arr) {
-  if (Object.keys(arr).length <= 1) return arr;
+const quickSort = (originObj) => {
+  if (Object.keys(originObj).length <= 1) return originObj;
 
-  const pivot = arr[Object.keys(arr)[0]];
+  const pivot = originObj[Object.keys(originObj)[0]];
   let left = {};
   let right = {};
 
-  for (let i = 1; i < Object.keys(arr).length; i++) {
+  for (let i = 1; i < Object.keys(originObj).length; i++) {
     let obj = {};
-    obj[Object.keys(arr)[i]] = arr[Object.keys(arr)[i]];
-    if (arr[Object.keys(arr)[i]] <= pivot) Object.assign(left, obj);
+    obj[Object.keys(originObj)[i]] = originObj[Object.keys(originObj)[i]];
+    if (originObj[Object.keys(originObj)[i]] <= pivot) Object.assign(left, obj);
     else Object.assign(right, obj);
   }
 
   const lSorted = quickSort(left);
   const rSorted = quickSort(right);
   const pivot_obj = {};
-  pivot_obj[Object.keys(arr)[0]] = pivot;
+  pivot_obj[Object.keys(originObj)[0]] = pivot;
 
   return { ...lSorted, ...pivot_obj, ...rSorted };
 };
