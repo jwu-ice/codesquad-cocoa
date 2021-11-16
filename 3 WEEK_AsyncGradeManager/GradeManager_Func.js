@@ -3,11 +3,6 @@
     - 표전정규분포표를 참고
 */
 
-const mathScore = [
-  89.23, 82.03, 71.56, 78.82, 85.05, 84.44, 67.53, 71.7, 77.97, 73.77, 84.25,
-  67.01, 73.78, 64.19, 89.89, 90.32, 73.21, 75.35, 83.22, 74.01,
-];
-
 // 평균 구하기
 function getMean(grade) {
   return grade.reduce((pre, cur) => pre + cur) / grade.length;
@@ -38,6 +33,11 @@ function findPercent_70to80(average, standard) {
   if (Z_80 === 0.28) Z_80 = 0.6103;
   return (result = ((Z_80 - Z_70) * 100).toFixed(2));
 }
+
+const mathScore = [
+  89.23, 82.03, 71.56, 78.82, 85.05, 84.44, 67.53, 71.7, 77.97, 73.77, 84.25,
+  67.01, 73.78, 64.19, 89.89, 90.32, 73.21, 75.35, 83.22, 74.01,
+];
 
 console.log(`평균:`, getMean(mathScore));
 console.log(`표준편차:`, getStandardDeviation(mathScore));
