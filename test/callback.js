@@ -1,17 +1,9 @@
-/*
-    function a() {
-    console.log("A");
-    }
-*/
-
-let a = function (s) {
-  console.log("A");
-  console.log("arg: ", s);
-};
-
-function slowFunc(callback) {
-  callback();
-  a("하하");
+// for문써서 map 만들기
+const array1 = ["a", "b", "c"];
+function forEach(arr, fn, map = []) {
+  for (let i = 0; i < arr.length; i++) {
+    map = [...map, fn(arr[i])];
+  }
+  return map;
 }
-
-slowFunc(a);
+forEach(array1, (element) => element + 1);
