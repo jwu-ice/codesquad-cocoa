@@ -12,7 +12,7 @@ class ToDoManager {
 
   clickAddButton() {
     const $input = document.querySelector(".input_task");
-    const $table = document.querySelector("#list");
+    const $table = document.querySelector("#table_list");
 
     if (!$input.value) return alert("일정을 입력하세요!");
     $table.insertRow().innerHTML = `
