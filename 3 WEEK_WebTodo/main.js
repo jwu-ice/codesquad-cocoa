@@ -34,5 +34,3 @@ class ToDoManager {
 }
 
 const eventManager = new ToDoManager();
-
-// 반복되는 모든 요소에 이벤트 핸들러를 넣으려면 반복문을 써야하는걸까?
