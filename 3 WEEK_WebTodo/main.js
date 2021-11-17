@@ -1,39 +1,37 @@
 class ToDoManager {
   constructor() {
-    this._add = document.querySelector(".input_button");
-    this._add.addEventListener("click", (e) => {
+    this.$add = document.querySelector(".Add_button");
+    this.$add.addEventListener("click", (e) => {
       this.clickAddButton();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") eventManager.clickAddButton();
     });
   }
 
   clickAddButton() {
-    const input = document.querySelector(".input_task");
-    const table = document.querySelector("#list");
+    const $input = document.querySelector(".input_task");
+    const $table = document.querySelector("#list");
 
-    if (!input.value) return alert("일정을 입력하세요!");
-    table.insertRow().innerHTML = `
+    if (!$input.value) return alert("일정을 입력하세요!");
+    $table.insertRow().innerHTML = `
       <tr>
         <td><input type="checkbox" onclick="eventManager.boxCheckFunc(this)"></td>
-        <td>${input.value}</td>
-        <td></td>
+        <td>${$input.value}</td>
+        <td onclick="eventManager.deleteLine(this)"></td>
       </tr>`;
-    input.value = "";
+    $input.value = "";
   }
 
   boxCheckFunc(cur) {
-    const text = cur.parentNode.nextSibling.nextSibling;
-    if (cur.checked) text.style.textDecoration = "line-through";
-    else text.style.textDecoration = "none";
+    cur.parentNode.parentNode.classList.toggle("success");
   }
 
   deleteLine(cur) {
     cur.parentNode.remove();
   }
 }
-
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") eventManager.clickAddButton();
-});
 
 const eventManager = new ToDoManager();
 

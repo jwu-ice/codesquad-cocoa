@@ -42,7 +42,7 @@ header p {
   border: 1px solid rgb(153, 153, 153);
 }
 
-.input_button {
+.Add_button {
   width: 50px;
   height: 30px;
   margin-left: 20px;
@@ -68,6 +68,10 @@ td {
   padding: 10px;
 }
 
+table td:nth-child(1) {
+  width: 5%;
+}
+
 table td:nth-child(3) {
   width: 20px;
   cursor: pointer;
@@ -78,4 +82,8 @@ table td:nth-child(3) {
 
 tr:hover {
   background-color: aliceblue;
+}
+
+tr.success {
+  text-decoration: line-through;
 }
