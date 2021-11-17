@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo List</title>
+
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="todolist">
+      <header>
+        <p>🐱‍👤 ToDo List</p>
+      </header>
+
+      <div class="Box">
+        <div class="title">
+          <span>ToDo List</span>
+        </div>
+
+        <div class="inputBox">
+          <input type="text" class="input_task" placeholder="New Task" />
+          <input type="button" class="input_button" value="Add" />
+        </div>
+
+        <table id="list">
+          <tr>
+            <td>
+              <input
+                type="checkbox"
+                onclick="eventManager.boxCheckFunc(this)"
+              />
+            </td>
+            <td>오늘 공부한 내용 노션에 정리</td>
+            <td onclick="eventManager.deleteLine(this)"></td>
+          </tr>
+          <tr>
+            <td>
+              <input
+                type="checkbox"
+                onclick="eventManager.boxCheckFunc(this)"
+              />
+            </td>
+            <td>html, css, javascript 공부</td>
+            <td onclick="eventManager.deleteLine(this)"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
