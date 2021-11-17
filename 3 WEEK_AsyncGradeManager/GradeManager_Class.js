@@ -120,3 +120,5 @@ console.log(
     80
   )}%를 가진다.`
 );
+
+export { CalculateManager };
