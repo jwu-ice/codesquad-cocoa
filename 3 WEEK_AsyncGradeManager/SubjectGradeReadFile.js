@@ -5,6 +5,8 @@
     3. 퀵소트를 사용해서 과목별 점수를 정렬하는 기능 추가
 */
 
+import { CalculateManager } from "./GradeManager_Class";
+
 const fs = require("fs");
 fs.readFile(
   "1115_Async_GradeManageProgram/input.txt",
@@ -46,3 +48,6 @@ const quickSort = (originObj) => {
 
   return { ...lSorted, ...pivot_obj, ...rSorted };
 };
+
+const manager = new CalculateManager();
+manager.
