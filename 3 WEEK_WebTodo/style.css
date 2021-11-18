@@ -22,13 +22,13 @@ header p {
   font-size: 30px;
 }
 
-.Box {
+#Box {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.inputBox {
+#inputBox {
   display: flex;
   align-items: center;
 }
@@ -42,7 +42,7 @@ header p {
   border: 1px solid rgb(153, 153, 153);
 }
 
-.Add_button {
+.add_btn {
   width: 50px;
   height: 30px;
   margin-left: 20px;
@@ -85,6 +85,6 @@ tr:hover {
   background-color: aliceblue;
 }
 
-tr.success {
+tr.checked {
   text-decoration: line-through;
 }
