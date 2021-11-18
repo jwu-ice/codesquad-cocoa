@@ -4,37 +4,44 @@
   Event를 등록하고 Event listener 등록할 수 있다.
 */
 
-class ToDoManager {
-  constructor() {
-    this.$add = document.querySelector(".Add_button");
-    this.$add.addEventListener("click", this.printList);
+class TodoManager {
+  constructor(element) {
+    element.addEventListener("click", this.eventMenu);
+    element.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") this.addTodo();
+    });
   }
 
-  printList = () => {
+  eventMenu = (e) => {
+    const onclick = (className) => e.target.classList.contains(className);
+    if (onclick("add_btn")) this.addTodo();
+    if (onclick("chk_box")) this.setLine(e);
+    if (onclick("trash_can")) this.delTodo(e);
+  };
+
+  addTodo = () => {
     const $input = document.querySelector(".input_task");
+    if (!$input.value) return alert("일정을 입력하세요!");
     const $table = document.querySelector("#table_list");
 
-    if (!$input.value) return alert("일정을 입력하세요!");
-    $table.insertRow().innerHTML = `
-      <tr>
-        <td><input type="checkbox" onclick="eventManager.boxCheck(this)"></td>
-        <td>${$input.value}</td>
-        <td onclick="eventManager.deleteList(this)"></td>
-      </tr>`;
+    const inputRow = `
+        <tr>
+          <td ><input type="checkbox" class="chk_box"></td>
+          <td>${$input.value}</td>
+          <td class="trash_can"></td>
+        </tr>`;
+
+    $table.insertAdjacentHTML("beforeend", inputRow);
     $input.value = "";
   };
 
-  boxCheck(cur) {
-    cur.parentNode.parentNode.classList.toggle("success");
-  }
+  setLine = (e) => {
+    e.target.closest("tr").classList.toggle("checked");
+  };
 
-  deleteList(cur) {
-    cur.parentNode.remove();
-  }
+  delTodo = (e) => {
+    e.target.closest("tr").remove();
+  };
 }
 
-const eventManager = new ToDoManager();
-
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") eventManager.printList();
-});
+new TodoManager(Box);
