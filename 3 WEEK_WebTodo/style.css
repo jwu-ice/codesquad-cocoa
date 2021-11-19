@@ -88,3 +88,9 @@ tr:hover {
 tr.checked {
   text-decoration: line-through;
 }
+
+/* 
+[data-action="print"] {
+  속성은 이런식으로 접근한다.
+}
+*/

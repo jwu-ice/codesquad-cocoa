@@ -6,42 +6,40 @@
 
 class TodoManager {
   constructor(element) {
-    element.addEventListener("click", this.eventMenu);
+    element.addEventListener("click", this.eventMenu.bind(this));
     element.addEventListener("keydown", (e) => {
       if (e.key === "Enter") this.addTodo();
     });
   }
 
-  eventMenu = (e) => {
-    const onclick = (className) => e.target.classList.contains(className);
-    if (onclick("add_btn")) this.addTodo();
-    if (onclick("chk_box")) this.setLine(e);
-    if (onclick("trash_can")) this.delTodo(e);
+  eventMenu = function (e) {
+    const action = e.target.dataset.action;
+    if (action) this[action](e);
   };
 
-  addTodo = () => {
+  addTodo() {
     const $input = document.querySelector(".input_task");
     if (!$input.value) return alert("일정을 입력하세요!");
     const $table = document.querySelector("#table_list");
 
     const inputRow = `
         <tr>
-          <td ><input type="checkbox" class="chk_box"></td>
+          <td ><input type="checkbox" class="chk_box" data-action="setLine"></td>
           <td>${$input.value}</td>
-          <td class="trash_can"></td>
+          <td class="trash_can" data-action="delTodo"></td>
         </tr>`;
 
     $table.insertAdjacentHTML("beforeend", inputRow);
     $input.value = "";
-  };
+  }
 
-  setLine = (e) => {
+  setLine(e) {
     e.target.closest("tr").classList.toggle("checked");
-  };
+  }
 
-  delTodo = (e) => {
+  delTodo(e) {
     e.target.closest("tr").remove();
-  };
+  }
 }
 
 new TodoManager(Box);
