@@ -6,13 +6,13 @@
 
 class TodoManager {
   constructor(element) {
-    element.addEventListener("click", this.eventMenu.bind(this));
+    element.addEventListener("click", this.eventMenu);
     element.addEventListener("keydown", (e) => {
       if (e.key === "Enter") this.addTodo();
     });
   }
 
-  eventMenu = function (e) {
+  eventMenu = (e) => {
     const action = e.target.dataset.action;
     if (action) this[action](e);
   };
