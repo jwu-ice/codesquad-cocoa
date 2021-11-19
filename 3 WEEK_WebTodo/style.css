@@ -22,7 +22,7 @@ header p {
   font-size: 30px;
 }
 
-#Box {
+#box {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -51,6 +51,7 @@ header p {
   border-radius: 5px;
   border: 1px solid rgb(153, 153, 153);
   cursor: pointer;
+  text-align: center;
 }
 
 table {

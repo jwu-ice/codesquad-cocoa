@@ -41,7 +41,18 @@
 // console.log(counter());
 // console.log(counter.call(this));
 
-let nums = (...arg) => {
-  console.log(arg);
-};
-nums(1, 2, 3);
+// let nums = (...arg) => {
+//   console.log(arg);
+// };
+// nums(1, 2, 3);
+
+function makeUser() {
+  return {
+    name: "John",
+    ref() {
+      return this;
+    },
+  };
+}
+
+let user = makeUser();

@@ -2,34 +2,30 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ToDo List</title>
 
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <div id="todolist">
-      <header>
-        <p>🐱‍👤 ToDo List</p>
-      </header>
+    <header>
+      <p>🐱‍👤 ToDo List</p>
+    </header>
 
-      <div id="Box">
-        <div class="title">
-          <span>ToDo List</span>
-        </div>
-
-        <div id="inputBox">
-          <input type="text" class="input_task" placeholder="New Task" />
-          <input
-            type="button"
-            class="add_btn"
-            data-action="addTodo"
-            value="Add"
-          />
-        </div>
-
-        <table id="table_list"></table>
+    <div id="Box">
+      <div class="title">
+        <span>ToDo List</span>
       </div>
+
+      <div class="inputBox">
+        <input class="input_task" type="text" placeholder="New Task" />
+        <input class="add_btn" data-action="addTodo" value="Add" />
+      </div>
+
+      <table class="table_list"></table>
     </div>
+
     <script src="main.js"></script>
   </body>
 </html>

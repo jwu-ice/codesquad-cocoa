@@ -19,7 +19,7 @@ class TodoManager {
 
   addTodo() {
     const $input = document.querySelector(".input_task");
-    if (!$input.value) return alert("일정을 입력하세요!");
+    if (!$input.value || $input.value.trim() === "") return;
     const $table = document.querySelector("#table_list");
 
     const inputRow = `
