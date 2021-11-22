@@ -2,6 +2,7 @@
   JavaScript와 DOM과 의 상호작용을 경험한다.
   DOM 노드를 탐색하고, 추가하는 API를 안다.
   Event를 등록하고 Event listener 등록할 수 있다.
+  class 형태
 */
 
 class TodoManager {
@@ -12,9 +13,9 @@ class TodoManager {
     });
   }
 
-  eventMenu = (e) => {
+  eventMenu = (event) => {
     const action = e.target.dataset.action;
-    if (action) this[action](e);
+    if (action) this[action](event);
   };
 
   addTodo() {
