@@ -61,6 +61,7 @@ table {
   border-left: 1px solid rgb(153, 153, 153);
   border-right: 1px solid rgb(153, 153, 153);
   border-collapse: collapse;
+  position: fixed;
 }
 
 tr,
@@ -90,7 +91,7 @@ table td:nth-child(4) {
 }
 
 tr:hover {
-  background-color: aliceblue;
+  background-color: rgb(252, 252, 252);
 }
 
 tr.checked {
