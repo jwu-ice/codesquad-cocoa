@@ -10,7 +10,7 @@ ul {
 
 header {
   background-color: black;
-  color: rgb(220, 229, 233);
+  color: rgb(170, 172, 173);
   padding: 12px;
 }
 header p {
@@ -22,7 +22,7 @@ header p {
   font-size: 30px;
 }
 
-#Box {
+#box {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -33,7 +33,7 @@ header p {
   align-items: center;
 }
 
-.input_task {
+.input {
   width: 500px;
   height: 30px;
   padding-left: 10px;
@@ -77,6 +77,13 @@ table td:nth-child(1) {
 table td:nth-child(3) {
   width: 20px;
   cursor: pointer;
+  background: url("asset/연필.png") no-repeat;
+  background-size: 20px;
+  background-position: 5px;
+}
+table td:nth-child(4) {
+  width: 20px;
+  cursor: pointer;
   background: url("asset/휴지통.png") no-repeat;
   background-size: 20px;
   background-position: 5px;
@@ -90,8 +97,7 @@ tr.checked {
   text-decoration: line-through;
 }
 
-/* 
-[data-action="print"] {
-  속성은 이런식으로 접근한다!
+.alert {
+  text-align: center;
+  color: red;
 }
-*/
