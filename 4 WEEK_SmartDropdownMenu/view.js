@@ -23,17 +23,18 @@ document.body.insertAdjacentHTML("afterbegin", _todoStarList);
 
 const starsMap = new Map();
 let isSelect = false;
+
 const $star = document.querySelector("#star");
 const $starList = document.querySelector(".starList");
 const $log = document.querySelector(".log");
 
-$star.addEventListener("mouseenter", doGlobalEvent);
+$star.addEventListener("mouseenter", enterStar);
 
-function doGlobalEvent() {
+function enterStar() {
   const timer = setTimeout(() => {
     $starList.style.display = "block";
     timeCheckList();
-  });
+  }, 1000);
 
   $star.addEventListener("mouseleave", () => {
     clearTimeout(timer);
