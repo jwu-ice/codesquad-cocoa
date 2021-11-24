@@ -46,13 +46,26 @@
 // };
 // nums(1, 2, 3);
 
-function makeUser() {
-  return {
-    name: "John",
-    ref() {
-      return this;
-    },
-  };
+// function makeUser() {
+//   return {
+//     name: "John",
+//     ref() {
+//       return this;
+//     },
+//   };
+// }
+
+// let user = makeUser();
+
+// async / await 의 기초
+/**
+ * function 앞에 async를 붙인다.
+ * 그냥 return 하면 Promise를 반환하게 되기에
+ * .then()블럭을 사용한다.
+ *
+ */
+async function hello() {
+  return (greeting = await Promise.resolve("Hello"));
 }
 
-let user = makeUser();
+hello().then((value) => console.log(value));
