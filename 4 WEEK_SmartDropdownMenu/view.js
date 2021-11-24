@@ -20,20 +20,17 @@ document.body.insertAdjacentHTML("afterbegin", _todoStarList);
  * 생각해볼 점.
  * 콜백의 콜백의 콜백함수다..
  */
-
-const starsMap = new Map();
-let isSelect = false;
-
 const $star = document.querySelector("#star");
 const $starList = document.querySelector(".starList");
 const $log = document.querySelector(".log");
+let isAfterTime = true;
 
 $star.addEventListener("mouseenter", enterStar);
 
 function enterStar() {
   const timer = setTimeout(() => {
     $starList.style.display = "block";
-    timeCheckList();
+    addMouseEvent();
   }, 1000);
 
   $star.addEventListener("mouseleave", () => {
@@ -41,25 +38,33 @@ function enterStar() {
   });
 }
 
-function timeCheckList() {
-  const selectWithTime = function (e) {
-    if (!isSelect) {
-      isSelect = true;
+function addMouseEvent() {
+  const starsMap = new Map();
+
+  const checkBooleanAndPrint = function (e) {
+    if (isAfterTime) {
+      isAfterTime = false;
       setTimeout(() => {
-        printList(e);
+        printList(e, starsMap);
       }, 500);
     }
   };
 
-  $starList.addEventListener("mousemove", selectWithTime);
+  $starList.addEventListener("mousemove", checkBooleanAndPrint);
+
+  // 클릭 시 리스트들 다시 안보이게
   $star.addEventListener("click", () => {
     $starList.style.display = "none";
   });
 }
 
-function printList(e) {
-  isSelect = false;
+/**
+ * @param {MouseEvent} e
+ * @param {Map} starsMap
+ */
+function printList(e, starsMap) {
   const star = e.target.innerText;
+  isAfterTime = true;
 
   if (starsMap.has(star)) {
     let starsValue = starsMap.get(star);
