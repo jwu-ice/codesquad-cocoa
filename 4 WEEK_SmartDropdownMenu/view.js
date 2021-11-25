@@ -20,39 +20,42 @@ document.body.insertAdjacentHTML("afterbegin", _todoStarList);
  * 생각해볼 점.
  * 콜백의 콜백의 콜백함수다..
  */
-const $star = document.querySelector("#star");
-const $starList = document.querySelector(".starList");
-const $log = document.querySelector(".log");
-let isAfterTime = true;
 
-$star.addEventListener("mouseenter", enterStar);
+init();
 
-function enterStar() {
-  const timer = setTimeout(() => {
-    $starList.style.display = "block";
-    addMouseEvent();
-  }, 1000);
+function init() {
+  collectEvent(1000, 500);
+}
+
+function collectEvent(starClickTime, listMouseMoveTime) {
+  const $star = document.querySelector("#star");
+  const $starList = document.querySelector(".starList");
+  const $log = document.querySelector(".log");
+  const starsMap = new Map();
+  let isAfterTime;
+  let timer;
+
+  $star.addEventListener("mouseenter", (e) => {
+    if (timer) return;
+    timer = setTimeout(() => {
+      $starList.style.display = "block";
+      timer = null;
+    }, starClickTime);
+  });
 
   $star.addEventListener("mouseleave", () => {
     clearTimeout(timer);
   });
-}
 
-function addMouseEvent() {
-  const starsMap = new Map();
-
-  const checkBooleanAndPrint = function (e) {
-    if (isAfterTime) {
-      isAfterTime = false;
-      setTimeout(() => {
-        printList(e, starsMap);
-      }, 500);
+  $starList.addEventListener("mousemove", (e) => {
+    if (!isAfterTime) {
+      isAfterTime = setTimeout(() => {
+        printList(e.target.innerText, starsMap, $log);
+        isAfterTime = null;
+      }, listMouseMoveTime);
     }
-  };
+  });
 
-  $starList.addEventListener("mousemove", checkBooleanAndPrint);
-
-  // 클릭 시 리스트들 다시 안보이게
   $star.addEventListener("click", () => {
     $starList.style.display = "none";
   });
@@ -62,18 +65,17 @@ function addMouseEvent() {
  * @param {MouseEvent} e
  * @param {Map} starsMap
  */
-function printList(e, starsMap) {
-  const star = e.target.innerText;
-  isAfterTime = true;
+function printList(eventTargetText, starsMap, $log) {
+  const star = eventTargetText;
 
   if (starsMap.has(star)) {
-    let starsValue = starsMap.get(star);
-    starsMap.set(star, ++starsValue);
+    starsMap.set(star, starsMap.get(star) + 1);
   } else {
     starsMap.set(star, 1);
   }
 
   let print = ``;
+
   for (const [key, value] of starsMap) {
     print += `
     <span>${key} : ${value}</span>`;
