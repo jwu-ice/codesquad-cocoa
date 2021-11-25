@@ -21,12 +21,6 @@ document.body.insertAdjacentHTML("afterbegin", _todoStarList);
  * 콜백의 콜백의 콜백함수다..
  */
 
-init();
-
-function init() {
-  collectEvent(1000, 500);
-}
-
 function collectEvent(starClickTime, listMouseMoveTime) {
   const $star = document.querySelector("#star");
   const $starList = document.querySelector(".starList");
@@ -82,3 +76,5 @@ function printList(eventTargetText, starsMap, $log) {
   }
   $log.innerHTML = print;
 }
+
+collectEvent(1000, 500);
