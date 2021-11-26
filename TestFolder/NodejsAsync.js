@@ -9,12 +9,8 @@ let fs = require("fs");
 
 console.log("A");
 
-fs.readFile(
-  "1115_Async_GradeManageProgram/input.txt",
-  "utf-8",
-  (err, result) => {
-    console.log(result);
-  }
-);
+fs.readFile("TestFolder/input.txt", "utf-8", (err, result) => {
+  console.log(result);
+});
 
 console.log("C");
