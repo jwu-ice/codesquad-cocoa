@@ -1,0 +1,124 @@
+@import url(reset.css);
+:root {
+  --blackColor: rgb(40, 40, 40);
+  --whiteColor: rgba(230, 230, 230, 0.89);
+  --tomatoColor: #f48484;
+  --chorok: #30944e;
+}
+
+body {
+  height: 1500px;
+  background-color: var(--blackColor);
+  filter: drop-shadow(0px 1px 1px var(--blackColor));
+}
+
+#timerPage {
+  width: 100%;
+  color: var(--whiteColor);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#focus {
+  position: absolute;
+  top: 150px;
+  width: 100%;
+  text-align: center;
+  font-size: 35px;
+}
+
+#time {
+  position: absolute;
+  top: 250px;
+  width: 100%;
+  font-size: 120px;
+  letter-spacing: 10px;
+  text-align: center;
+}
+
+#progressBar {
+  position: absolute;
+  top: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+#playBtn {
+  position: absolute;
+  top: 470px;
+  background: url(./image/musicStart.png) no-repeat;
+  background-size: contain;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+
+#playBtn.hide {
+  display: none;
+}
+
+#stopBtn {
+  position: absolute;
+  top: 470px;
+  background: url(./image/musicStop.png) no-repeat;
+  background-size: contain;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+
+#stopBtn.hide {
+  display: none;
+}
+
+#refreshBtn {
+  position: absolute;
+  top: 470px;
+  background: url(./image/musicAllStop.png) no-repeat;
+  background-size: contain;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  margin-left: 200px;
+}
+
+#refreshBtn.hide {
+  display: none;
+}
+
+#middleTodo {
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  max-height: 30%;
+  max-width: 100%;
+  bottom: 0;
+  background-color: var(--tomatoColor);
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--whiteColor);
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+#progressBar {
+  position: absolute;
+  max-width: 60%;
+  width: 600px;
+  height: 5px;
+  border-radius: 30px;
+  background-color: var(--whiteColor);
+}
+
+#barStatus {
+  position: absolute;
+  border-radius: 300px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 0%;
+  height: 100%;
+  background-color: var(--tomatoColor);
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>뽀모도로 타이머</title>
+
+    <link href="CSS/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <section id="timerPage">
+      <div id="focus">Learn to Javascript Closure</div>
+      <div id="time"></div>
+      <div id="progressBar">
+        <div id="barStatus"></div>
+      </div>
+      <div id="playBtn" data-action="playBtn"></div>
+      <div id="stopBtn" class="hide" data-action="stopBtn"></div>
+      <div id="refreshBtn" class="hide" data-action="refreshBtn"></div>
+    </section>
+
+    <div id="middleTodo">👇 Todo List</div>
+
+    <section id="todoPage">
+      <div id="todoInput"></div>
+      <div id="todoList"></div>
+    </section>
+  </body>
+  <script type="module" src="JS/TimerApp.js"></script>
+</html>
