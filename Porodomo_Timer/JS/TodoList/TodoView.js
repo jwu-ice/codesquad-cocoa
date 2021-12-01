@@ -15,12 +15,12 @@ class TodoView {
   }
 
   addEvent() {
-    this.addScrollEvent();
     this.$("#todoPage").addEventListener("click", this.eventHandler.bind(this));
     this.$("#middleTodo").addEventListener(
       "click",
       this.scrollUpAndDown.bind(this)
     );
+    this.addScrollEvent();
   }
 
   addScrollEvent() {

@@ -76,6 +76,7 @@ class TimerView {
     this.pomodoroCount = 1;
     this.toggleBtnList();
     this.$("#timerPage").classList.remove("hidden");
+    this.$("#time").classList.remove("warning");
     this.time = this.model.timerTime * 60;
     this.progressBar(this.time);
     this.updateTimer();

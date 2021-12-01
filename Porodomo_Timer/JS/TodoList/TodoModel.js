@@ -3,22 +3,17 @@ export class TodoModel {
     this.todos = [
       {
         id: 1,
-        text: "Learn to Algorithm",
+        text: "leetcode 알고리즘 5문제 풀기",
         finish: false,
       },
       {
         id: 2,
-        text: "한글로 써보자아아아ㅠㅜ루아후아후아ㅓdd하우하아 좀 길게 써보면 어떻게 될까",
+        text: "자바스크립트 딥다이브 10장 공부",
         finish: false,
       },
       {
         id: 3,
-        text: "이것은 완료된 것이니라~",
-        finish: true,
-      },
-      {
-        id: 4,
-        text: "이것은 완료된 것이니라~222",
+        text: "안녕? 나는 잘 수 있어",
         finish: true,
       },
     ];
