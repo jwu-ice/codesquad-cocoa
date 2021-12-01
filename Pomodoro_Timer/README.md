@@ -1,5 +1,5 @@
 
-https://sju02048.github.io/codesquad-cocoa/Porodomo_Timer/index.html
+https://sju02048.github.io/codesquad-cocoa/Pomodoro_Timer/index.html
 
 
 <hr/>
