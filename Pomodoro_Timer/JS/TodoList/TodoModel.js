@@ -13,7 +13,12 @@ export class TodoModel {
       },
       {
         id: 3,
-        text: "안녕? 나는 잘 수 있어",
+        text: "코드스쿼드 코코아 마무리하기",
+        finish: true,
+      },
+      {
+        id: 4,
+        text: "유키와 산책하기",
         finish: true,
       },
     ];

@@ -20,23 +20,21 @@ class TodoView {
       "click",
       this.scrollUpAndDown.bind(this)
     );
-    this.addScrollEvent();
+    window.addEventListener("scroll", this.addScrollEvent.bind(this));
   }
 
   addScrollEvent() {
-    window.addEventListener("scroll", () => {
-      const scrollable =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = window.scrollY;
+    const scrollable =
+      document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = window.scrollY;
 
-      if (scrollable - scrolled < 400) {
-        this.$("#middleTodo").classList.add("up");
-        this.$("#middleTodo").innerHTML = "👆 Timer";
-      } else if (scrollable - scrolled > scrollable - 400) {
-        this.$("#middleTodo").classList.remove("up");
-        this.$("#middleTodo").innerHTML = "👇 Todo List";
-      }
-    });
+    if (scrollable - scrolled < 400) {
+      this.$("#middleTodo").classList.add("up");
+      this.$("#middleTodo").innerHTML = "👆 Timer";
+    } else if (scrollable - scrolled > scrollable - 400) {
+      this.$("#middleTodo").classList.remove("up");
+      this.$("#middleTodo").innerHTML = "👇 Todo List";
+    }
   }
 
   $(selector) {
@@ -129,7 +127,7 @@ class TodoView {
   scrollUpAndDown(e) {
     if (e.target.classList.contains("up")) {
       this.$("#timerPage").scrollIntoView({
-        boolean: false,
+        block: "end",
         behavior: "smooth",
       });
       setTimeout(() => {
@@ -140,7 +138,7 @@ class TodoView {
       return;
     }
     this.$(".inputTodo").scrollIntoView({
-      boolean: true,
+      block: "start",
       behavior: "smooth",
     });
     setTimeout(() => {
