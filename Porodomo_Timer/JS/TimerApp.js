@@ -1,6 +1,10 @@
 import { TimerView, TimerModel } from "./TimerView.js";
-import { TodoView } from "./TodoList/TodoView.js";
+import { TodoView, TodoModel } from "./TodoList/TodoView.js";
 
-const timerTime = 25;
-const restTimerTime = 5;
-const App = new TimerView(new TimerModel(timerTime, restTimerTime));
+const timerTime = 0.2;
+const restTimerTime = 0.1;
+
+const TimerApp = new TimerView(
+  new TimerModel(timerTime, restTimerTime),
+  new TodoView(new TodoModel())
+);

@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>뽀모도로 타이머</title>
+    <title>Pomodoro Timer</title>
+    <link rel="shortcut icon" href="CSS/image/tomatoFavicon.ico" />
+    <link rel="icon" href="CSS/image/tomatoFavicon.ico" />
 
     <link href="CSS/style.css" rel="stylesheet" />
   </head>
@@ -24,8 +26,18 @@
     <div id="middleTodo">👇 Todo List</div>
 
     <section id="todoPage">
-      <div id="todoInput"></div>
+      <div id="todoInput">
+        <form>
+          <input
+            type="text"
+            class="inputTodo"
+            placeholder="Write your to do list"
+          />
+          <input type="submit" data-action="addTodo" value="" />
+        </form>
+      </div>
       <div id="todoList"></div>
+      <div id="todoListFinished"></div>
     </section>
   </body>
   <script type="module" src="JS/TimerApp.js"></script>
