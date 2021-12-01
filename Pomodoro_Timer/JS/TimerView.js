@@ -6,6 +6,7 @@ class TimerView {
     this.todoView = todoView;
 
     this.time = this.model.timerTime * 60;
+    this.breakTime = this.model.breakTimerTime * 60;
 
     this.setTimer = null;
     this.pomodoroCount = 1;
@@ -19,6 +20,12 @@ class TimerView {
     this.$("#timerPage").addEventListener(
       "click",
       this.eventHandler.bind(this)
+    );
+    this.$(".openbtn").addEventListener("click", this.openSideBar.bind(this));
+    this.$(".closebtn").addEventListener("click", this.closeSideBar.bind(this));
+    this.$(".optionTimer").addEventListener(
+      "click",
+      this.submitOptionTimer.bind(this)
     );
   }
 
@@ -53,7 +60,7 @@ class TimerView {
           this.time = this.model.timerTime * 60;
           this.pomodoroTime();
         } else {
-          this.time = this.model.restTimerTime * 60;
+          this.time = this.model.breakTimerTime * 60;
           this.pomodoroTime();
         }
       }
@@ -62,8 +69,6 @@ class TimerView {
       this.progressBar(this.time);
       this.updateTimer();
     }, 1000);
-
-    console.log("this.pomodoroCount :", this.pomodoroCount);
   }
 
   stopBtn() {
@@ -78,7 +83,7 @@ class TimerView {
     this.$("#timerPage").classList.remove("hidden");
     this.$("#time").classList.remove("warning");
     this.time = this.model.timerTime * 60;
-    this.progressBar(this.time);
+    this.progressBar();
     this.updateTimer();
   }
 
@@ -103,16 +108,40 @@ class TimerView {
     if (this.pomodoroCount % 2 === 1) {
       max = this.model.timerTime * 60;
     } else {
-      max = this.model.restTimerTime * 60;
+      max = this.model.breakTimerTime * 60;
+    }
+    $bar.style.width = ((max - this.time) / max) * 100 + "%";
+  }
+
+  submitOptionTimer(e) {
+    e.preventDefault();
+    const studyTime = this.$(".inputStudyTime").value.trim();
+    const breakTime = this.$(".inputBreakTime").value.trim();
+
+    if (!Number(studyTime) || !Number(breakTime)) {
+      return;
+    }
+    if (!this.$("#playBtn").classList.contains("hide")) {
+      this.toggleBtnList();
     }
 
-    $bar.style.width = ((max - this.time) / max) * 100 + "%";
+    this.model.timerTime = studyTime;
+    this.model.breakTimerTime = breakTime;
+
+    this.refreshBtn();
+    this.closeSideBar();
   }
 
   togglesBreakTime() {
     this.$("#timerPage").classList.toggle("hidden");
+  }
 
-    // .moving -> #timerPage
+  openSideBar() {
+    this.$("#mySidenav").classList.add("open");
+  }
+
+  closeSideBar() {
+    this.$("#mySidenav").classList.remove("open");
   }
 }
 

@@ -1,11 +1,6 @@
 export class TimerModel {
-  constructor(time, restTime) {
-    this.timerTime = time;
-    this.restTimerTime = restTime;
-  }
-
-  setTimer(setTime, setRestTime) {
-    this.timerTime = setTime;
-    this.restTimerTime = setRestTime;
+  constructor() {
+    this.timerTime = 25;
+    this.breakTimerTime = 5;
   }
 }

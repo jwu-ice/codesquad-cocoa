@@ -10,7 +10,6 @@ class TodoView {
 
   eventHandler(event) {
     const action = event.target.dataset.action;
-    console.log(action);
     if (action) this[action](event);
   }
 
@@ -28,10 +27,10 @@ class TodoView {
       document.documentElement.scrollHeight - window.innerHeight;
     const scrolled = window.scrollY;
 
-    if (scrollable - scrolled < 400) {
+    if (scrolled >= 600) {
       this.$("#middleTodo").classList.add("up");
       this.$("#middleTodo").innerHTML = "👆 Timer";
-    } else if (scrollable - scrolled > scrollable - 400) {
+    } else if (scrolled < 600) {
       this.$("#middleTodo").classList.remove("up");
       this.$("#middleTodo").innerHTML = "👇 Todo List";
     }
@@ -127,7 +126,7 @@ class TodoView {
   scrollUpAndDown(e) {
     if (e.target.classList.contains("up")) {
       this.$("#timerPage").scrollIntoView({
-        block: "end",
+        block: "start",
         behavior: "smooth",
       });
       setTimeout(() => {
