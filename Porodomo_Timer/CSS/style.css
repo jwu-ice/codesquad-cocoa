@@ -23,10 +23,14 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  transition-property: background-color;
+  transition-duration: 3s;
 }
 
 #timerPage.hidden {
-  background-color: #444444;
+  background-color: #ffcece;
+  transition-property: background-color;
+  transition-duration: 3s;
 }
 
 #focus {
@@ -46,7 +50,7 @@ body {
   top: 280px;
   width: 100%;
   font-size: 120px;
-  letter-spacing: 10px;
+  letter-spacing: 20px;
   text-align: center;
 }
 
@@ -114,12 +118,17 @@ body {
   text-align: center;
   font-size: 32px;
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   color: var(--whiteColor);
   padding-top: 10px;
   padding-bottom: 0px;
   z-index: 2;
   cursor: pointer;
+}
+
+#middleTodo.up {
+  top: 0;
+  background-color: var(--blackColor);
 }
 
 #progressBar {
@@ -207,7 +216,7 @@ body {
 }
 
 #todoList li:hover {
-  background-color: rgb(250, 210, 210);
+  background-color: rgb(252, 230, 230);
 }
 
 #todoList [data-action="finishTodo"] {

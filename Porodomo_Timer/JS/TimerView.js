@@ -110,6 +110,8 @@ class TimerView {
 
   togglesBreakTime() {
     this.$("#timerPage").classList.toggle("hidden");
+
+    // .moving -> #timerPage
   }
 }
 

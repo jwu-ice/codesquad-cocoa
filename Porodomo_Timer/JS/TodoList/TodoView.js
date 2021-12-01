@@ -15,8 +15,12 @@ class TodoView {
   }
 
   addEvent() {
-    // addScrollEvent();
+    this.addScrollEvent();
     this.$("#todoPage").addEventListener("click", this.eventHandler.bind(this));
+    this.$("#middleTodo").addEventListener(
+      "click",
+      this.scrollUpAndDown.bind(this)
+    );
   }
 
   addScrollEvent() {
@@ -25,12 +29,13 @@ class TodoView {
         document.documentElement.scrollHeight - window.innerHeight;
       const scrolled = window.scrollY;
 
-      if (scrolled === scrollable) {
-        alert("you've got reached the bottom");
+      if (scrollable - scrolled < 400) {
+        this.$("#middleTodo").classList.add("up");
+        this.$("#middleTodo").innerHTML = "👆 Timer";
+      } else if (scrollable - scrolled > scrollable - 400) {
+        this.$("#middleTodo").classList.remove("up");
+        this.$("#middleTodo").innerHTML = "👇 Todo List";
       }
-
-      console.log("scrollable :>> ", scrollable);
-      console.log(scrolled);
     });
   }
 
@@ -119,6 +124,29 @@ class TodoView {
     if (e.target.parentElement.children[2].innerHTML === this.focusValue) {
       this.focusValue = "";
     }
+  }
+
+  scrollUpAndDown(e) {
+    if (e.target.classList.contains("up")) {
+      this.$("#timerPage").scrollIntoView({
+        boolean: false,
+        behavior: "smooth",
+      });
+      setTimeout(() => {
+        e.target.classList.remove("up");
+        e.target.innerHTML = "👇 Todo List";
+      }, 10);
+
+      return;
+    }
+    this.$(".inputTodo").scrollIntoView({
+      boolean: true,
+      behavior: "smooth",
+    });
+    setTimeout(() => {
+      e.target.classList.add("up");
+      e.target.innerHTML = "👆 Timer";
+    }, 10);
   }
 }
 
