@@ -11,6 +11,7 @@ class TimerView {
     this.setTimer = null;
     this.pomodoroCount = 1;
     this.focusValue = this.todoView.focusValue;
+    this.studySound = new Audio();
 
     this.addEvent();
     this.updateTimer();
@@ -43,7 +44,6 @@ class TimerView {
     this.updateTimer();
     this.pomodoroTime();
   }
-
   pomodoroTime() {
     this.setTimer = setInterval((e) => {
       if (this.time <= 6) {
@@ -55,29 +55,41 @@ class TimerView {
         this.pomodoroCount++;
         this.togglesBreakTime();
         this.$("#time").classList.remove("warning");
-
         if (this.pomodoroCount % 2 === 1) {
+          this.studySound.src = `./CSS/sound/studyTime.wav`;
+          this.studySound.volume = 0.5;
+          this.studySound.play();
+
           this.time = this.model.timerTime * 60;
           this.pomodoroTime();
         } else {
+          this.studySound.src = `./CSS/sound/breakTime.wav`;
+          this.studySound.volume = 0.5;
+          this.studySound.play();
+
           this.time = this.model.breakTimerTime * 60;
           this.pomodoroTime();
         }
       }
-
       this.time--;
       this.progressBar(this.time);
       this.updateTimer();
     }, 1000);
   }
 
+  pauseSound() {
+    this.studySound.pause();
+  }
+
   stopBtn() {
     this.toggleBtnList();
+    this.pauseSound();
     clearInterval(this.setTimer);
   }
 
   refreshBtn() {
     clearInterval(this.setTimer);
+    this.pauseSound();
     this.pomodoroCount = 1;
     this.toggleBtnList();
     this.$("#timerPage").classList.remove("hidden");

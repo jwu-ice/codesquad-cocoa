@@ -23,8 +23,6 @@ class TodoView {
   }
 
   addScrollEvent() {
-    const scrollable =
-      document.documentElement.scrollHeight - window.innerHeight;
     const scrolled = window.scrollY;
 
     if (scrolled >= 600) {
@@ -136,6 +134,7 @@ class TodoView {
 
       return;
     }
+
     this.$(".inputTodo").scrollIntoView({
       block: "start",
       behavior: "smooth",

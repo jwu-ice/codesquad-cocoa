@@ -34,10 +34,11 @@
   transition: 0.3s;
 }
 
-.sidenav input {
+.sidenav input[type="text"] {
   display: inline;
   background-color: rgb(36, 36, 36);
   border: 0px solid rgb(223, 223, 223);
+  border-bottom: 3px solid;
   font-size: 25px;
   color: rgb(223, 223, 223);
   width: 40px;
@@ -78,10 +79,13 @@ Form {
 }
 
 .optionTimer {
-  position: relative;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
   background: url(./image/ok.png) no-repeat;
   background-size: contain;
   cursor: pointer;
-  width: 22px;
-  height: 22px;
+  width: 35px;
+  height: 35px;
+  border: 0px;
 }
