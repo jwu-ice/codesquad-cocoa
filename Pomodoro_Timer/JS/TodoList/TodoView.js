@@ -70,7 +70,8 @@ class TodoView {
     let todoText = e.target.parentNode.querySelector(".todoText").innerHTML;
     this.focusValue = todoText;
 
-    const currentId = e.target.parentNode.id;
+    const todoId = parseInt(e.target.parentNode.id);
+    this.model.focusTodoModel(todoId);
 
     this.showTodos(this.model.todos);
     document
