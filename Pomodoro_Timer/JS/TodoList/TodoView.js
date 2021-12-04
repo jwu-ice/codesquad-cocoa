@@ -52,7 +52,8 @@ class TodoView {
   finishTodo(e) {
     const todoId = parseInt(e.target.parentElement.id);
     this.model.finishTodoModel(todoId);
-
+    const isFocus = this.model.findTodoElementModel(todoId, "focus");
+    isFocus ? this.model.focusTodoModel(todoId) : null;
     this.checkSameFocusValue(e);
     this.showTodos(this.model.todos);
   }
@@ -60,7 +61,6 @@ class TodoView {
   deleteTodo(e) {
     const todoId = parseInt(e.target.parentElement.id);
     this.model.deleteTodoModel(todoId);
-
     this.checkSameFocusValue(e);
     this.showTodos(this.model.todos);
   }
@@ -74,9 +74,6 @@ class TodoView {
     this.model.focusTodoModel(todoId);
 
     this.showTodos(this.model.todos);
-    document
-      .getElementById(currentId)
-      .childNodes[1].classList.add("isFocusing");
   }
 
   showTodos(todos) {
@@ -92,13 +89,12 @@ class TodoView {
   }
 
   drawTodo(todo) {
-    let listHtml = `
-        <li id="${todo.id}">
-            <div ></div>
-            <div data-action="finishTodo"></div>
-            <div data-action="focusTodo" class="todoText">${todo.text}</div>
-            <div data-action="deleteTodo"></div>
-        </li>`;
+    let listHtml = `<li id="${todo.id}">`;
+    listHtml += todo.focus ? `<div class="isFocusing"></div>` : `<div ></div>`;
+    listHtml += `<div data-action="finishTodo"></div>
+                  <div data-action="focusTodo" class="todoText">${todo.text}</div>
+                  <div data-action="deleteTodo"></div>
+                  </li>`;
 
     if (todo.finish) {
       this.$("#todoListFinished").insertAdjacentHTML("beforeend", listHtml);
