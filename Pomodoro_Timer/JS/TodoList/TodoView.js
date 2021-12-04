@@ -69,18 +69,18 @@ class TodoView {
     if (e.target.closest("#todoListFinished")) return;
     let todoText = e.target.parentNode.querySelector(".todoText").innerHTML;
     this.focusValue = todoText;
-
     const todoId = parseInt(e.target.parentNode.id);
     this.model.focusTodoModel(todoId);
-
     this.showTodos(this.model.todos);
   }
 
   showTodos(todos) {
+    this.model.setLocalStorage(todos);
+    todos = this.model.getLocalStorage();
+    console.log(todos);
     this.$("#todoList").textContent = "";
     this.$("#todoListFinished").textContent = "";
     this.$("#focus").innerHTML = this.focusValue;
-
     this.findJustOneFinish(todos);
 
     todos.forEach((todo) => {
@@ -103,6 +103,7 @@ class TodoView {
     this.$("#todoList").insertAdjacentHTML("beforeend", listHtml);
   }
 
+  // todolist와 finishlist 사이의 막대 하나 만들기
   findJustOneFinish(todos) {
     const isFinishJustOne = todos.find((todo) => todo.finish === true);
     if (isFinishJustOne) {

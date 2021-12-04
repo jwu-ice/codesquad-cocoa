@@ -1,32 +1,8 @@
+const TODO_KEY = "todokey";
+
 export class TodoModel {
   constructor() {
-    this.todos = [
-      {
-        id: 1,
-        text: "leetcode 알고리즘 5문제 풀기",
-        finish: false,
-        focus: false,
-      },
-      {
-        id: 2,
-        text: "자바스크립트 딥다이브 10장 공부",
-        finish: false,
-        focus: false,
-      },
-      {
-        id: 3,
-        text: "코드스쿼드 코코아 마무리하기",
-        finish: true,
-        focus: false,
-      },
-      {
-        id: 4,
-        text: "유키와 산책 1시간 하기",
-        finish: true,
-        focus: false,
-      },
-    ];
-    this.findTodoElementModel(1, "text");
+    this.todos = this.getLocalStorage();
   }
 
   addTodoModel(todoText) {
@@ -80,5 +56,16 @@ export class TodoModel {
     if (!this.todos.length) return;
     const findTodo = this.todos.find((todo) => todo.id === id);
     return findTodo[`${element}`];
+  }
+
+  setLocalStorage(todos) {
+    localStorage.setItem(
+      TODO_KEY,
+      this.todos.length ? JSON.stringify(todos) : `[]`
+    );
+  }
+
+  getLocalStorage() {
+    return JSON.parse(localStorage.getItem(TODO_KEY));
   }
 }
