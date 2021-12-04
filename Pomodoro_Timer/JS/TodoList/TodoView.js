@@ -77,18 +77,18 @@ class TodoView {
   showTodos(todos) {
     this.model.setLocalStorage(todos);
     todos = this.model.getLocalStorage();
-    console.log(todos);
     this.$("#todoList").textContent = "";
     this.$("#todoListFinished").textContent = "";
-    this.$("#focus").innerHTML = this.focusValue;
     this.findJustOneFinish(todos);
+    this.$(".rod").text;
+    this.$("#focus").innerHTML = this.focusValue;
 
     todos.forEach((todo) => {
-      this.drawTodo(todo);
+      this.renderingTodo(todo);
     });
   }
 
-  drawTodo(todo) {
+  renderingTodo(todo) {
     let listHtml = `<li id="${todo.id}">`;
     listHtml += todo.focus ? `<div class="isFocusing"></div>` : `<div ></div>`;
     listHtml += `<div data-action="finishTodo"></div>
@@ -100,15 +100,15 @@ class TodoView {
       this.$("#todoListFinished").insertAdjacentHTML("beforeend", listHtml);
       return;
     }
-    this.$("#todoList").insertAdjacentHTML("beforeend", listHtml);
+    this.$("#todoList").insertAdjacentHTML("afterbegin", listHtml);
   }
 
   // todolist와 finishlist 사이의 막대 하나 만들기
   findJustOneFinish(todos) {
     const isFinishJustOne = todos.find((todo) => todo.finish === true);
+    let listHtml = `<div class="rod"></div>`;
+    this.$("#todoListFinished").insertAdjacentHTML("afterbegin", listHtml);
     if (isFinishJustOne) {
-      let listHtml = `<div class="rod"></div>`;
-      this.$("#todoListFinished").insertAdjacentHTML("afterbegin", listHtml);
       this.$(".rod").classList.add("hidden");
     }
   }

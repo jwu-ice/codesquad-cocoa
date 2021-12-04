@@ -59,13 +59,12 @@ export class TodoModel {
   }
 
   setLocalStorage(todos) {
-    localStorage.setItem(
-      TODO_KEY,
-      this.todos.length ? JSON.stringify(todos) : `[]`
-    );
+    localStorage.setItem(TODO_KEY, todos.length ? JSON.stringify(todos) : `[]`);
   }
 
   getLocalStorage() {
-    return JSON.parse(localStorage.getItem(TODO_KEY));
+    return localStorage.length
+      ? JSON.parse(localStorage.getItem(TODO_KEY))
+      : [];
   }
 }
