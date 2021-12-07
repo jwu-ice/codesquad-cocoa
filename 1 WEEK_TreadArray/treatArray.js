@@ -302,3 +302,16 @@ const result_object = myReduce(
   {}
 );
 console.log(result_object);
+
+const asd = ["apple", "apple", "banana"].reduce((prev, curr) => {
+  if (curr in prev) {
+    prev[curr]++;
+  } else {
+    prev[curr] = 1;
+  }
+  return prev;
+}, {});
+
+console.log("asd :>> ", asd);
+
+
