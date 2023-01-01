@@ -4,7 +4,7 @@
 - 문제해결 시나리오
 1. 해결되지 않을 때 작게 하나 하나 생각
 2. 리팩토링 
-3. notion 에 정리 velog 에 다시 한번 정리해보자
+3. notion 에 정리하고 다시 한 번 blog 에 정리해보자
 
 ## Git Commit Convention
 ![image](https://user-images.githubusercontent.com/72546335/141967949-21d04419-6578-40ca-9548-08d9ddf045a1.png)
